@@ -12,7 +12,7 @@ class Calorie:
         self.temperature = temperature
 
     def calculate(self):
-        result = 10 * self.weight + 6.5 + self.height + 5 - float(self.temperature) * 10
+        result = 10 * self.weight + 6.5 + self.height + 5 * self.age - float(self.temperature) * 10
         return result
 
 
