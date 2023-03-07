@@ -6,8 +6,8 @@ class Temperature:
     """Represents a value extracted from the timedate.com/weather webpage"""
 
     def __init__(self, country, city):
-        self.country = country
-        self.city = city
+        self.country = country.replace(" ", "-")
+        self.city = city.replace(" ", "-")
 
     def get(self):
         r = requests.get(f"https://www.timeanddate.com/weather/{self.country}/{self.city}")
@@ -16,8 +16,9 @@ class Temperature:
         extractor = Extractor.from_yaml_file("temperature.yaml")
 
         raw_result = extractor.extract(c)
-        clean_result = raw_result["temp"].replace("\xa0°C", "")
+        clean_result = raw_result["temp"].replace("\xa0°C", "").strip()
         return clean_result
+
 
 
 if __name__ == "__main__":
